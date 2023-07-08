@@ -1,0 +1,26 @@
+- hosts: terraform-ansible
+  tasks:
+  - name: Instalando Python3 e Venv
+    apt:
+      pkg:
+      - python3
+      - virtualenv
+      update_cache: yes
+    become: yes   
+  - name: Instalando dependencias com PIP  (Django e DjangoREST)
+    pip: 
+     virtualenv: /home/ubuntu/tcc/venv
+     name: 
+      - django
+      - djangorestframework
+  - name: iniciando o projeto
+    shell: '. /home/ubuntu/tcc/venv/bin/activate; django-admin startproject setup /home/ubuntu/tcc'
+  - name: Alterando o arquivo hosts
+    lineinfile: 
+        path: /home/ubuntu/tcc/setup/settings.py
+        regexp: 'ALLOWED_HOSTS'
+        line: 'ALLOWED_HOSTS = ["*"]'
+        backrefs: yes
+  - name: Subindo o servidor
+    shell: 'cd ~/tcc; . venv/bin/activate; nohup python manage.py runserver 0.0.0.0:8000 &'    
+       
