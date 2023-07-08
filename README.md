@@ -1,6 +1,6 @@
 Provisionemanto de uma infraestrutura para desenvolvimento web em python usando django_framework, e com um servidor web ativo.
 
-O Provisionamento da instância EC2 da Amazon foi feito no Terraform e o gerenciamento de tarefas foi feino no Ansible.
+O Provisionamento da instância EC2 da Amazon foi feito no Terraform e o gerenciamento de tarefas foi feito no Ansible.
 
 A ami é um ubuntu server 20.04 lts.
 
